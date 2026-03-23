@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final Music Player</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>🎵 AuraBeats</h2>
+      </div>
+
+      <ul class="menu">
+        <li class="menu-item active" data-section="homeSection">🏠 Home</li>
+        <li class="menu-item" data-section="browseSection">🎼 Browse</li>
+        <li class="menu-item" data-section="playlistSection">📃 Playlist</li>
+        <li class="menu-item" data-section="favoritesSection">❤️ Favorites</li>
+        <li class="menu-item" data-section="recentSection">🕒 Recent</li>
+        <li class="menu-item" data-section="nowPlayingSection">💿 Now Playing</li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <p>Music is a whole mood ✨</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h1>Find your vibe</h1>
+          <p>Play songs, manage playlists, and enjoy a real player experience.</p>
+        </div>
+
+        <div class="search-area">
+          <input type="text" id="searchInput" placeholder="Search by title or artist..." />
+          <button id="searchBtn">Search</button>
+        </div>
+      </header>
+
+      <section id="homeSection" class="content-section active-section">
+        <div class="banner">
+          <div class="banner-text">
+            <h2>Feel every beat 🎶</h2>
+            <p>Browse beautiful tracks, build your collection, and enjoy smooth animated playback.</p>
+          </div>
+        </div>
+
+        <div class="categories">
+          <button class="category-btn active-category" data-tag="">All</button>
+          <button class="category-btn" data-tag="pop">Pop</button>
+          <button class="category-btn" data-tag="rock">Rock</button>
+          <button class="category-btn" data-tag="jazz">Jazz</button>
+          <button class="category-btn" data-tag="electronic">Electronic</button>
+          <button class="category-btn" data-tag="classical">Classical</button>
+          <button class="category-btn" data-tag="ambient">Ambient</button>
+          <button class="category-btn" data-tag="indie">Indie</button>
+        </div>
+
+        <h2 class="section-title">Featured Songs</h2>
+        <div id="featuredSongs" class="songs-grid"></div>
+      </section>
+
+      <section id="browseSection" class="content-section">
+        <h2 class="section-title">Browse Songs</h2>
+        <div id="browseSongs" class="songs-grid"></div>
+      </section>
+
+      <section id="playlistSection" class="content-section">
+        <h2 class="section-title">My Playlist</h2>
+        <div id="playlistContainer" class="list-box"></div>
+      </section>
+
+      <section id="favoritesSection" class="content-section">
+        <h2 class="section-title">Favorites</h2>
+        <div id="favoritesContainer" class="list-box"></div>
+      </section>
+
+      <section id="recentSection" class="content-section">
+        <h2 class="section-title">Recently Played</h2>
+        <div id="recentContainer" class="list-box"></div>
+      </section>
+
+      <section id="nowPlayingSection" class="content-section now-playing-page">
+        <button id="backToHomeBtn" class="back-btn">← Back to Home</button>
+
+        <div class="big-player-card">
+          <div class="big-cover-wrap">
+            <img id="bigPlayerCover" src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&q=80&auto=format&fit=crop" alt="cover" />
+          </div>
+
+          <div class="big-player-info">
+            <h2 id="bigPlayerTitle">No song selected</h2>
+            <p id="bigPlayerArtist">Choose a song to start playing</p>
+
+            <div class="progress-wrap large-progress">
+              <span id="bigCurrentTime">0:00</span>
+              <input type="range" id="bigProgressBar" min="0" max="100" value="0" />
+              <span id="bigDuration">0:00</span>
+            </div>
+
+            <div class="big-controls">
+              <button id="bigPrevBtn">⏮</button>
+              <button id="bigPlayBtn">▶</button>
+              <button id="bigStopBtn">⏹</button>
+              <button id="bigNextBtn">⏭</button>
+            </div>
+
+            <div class="extra-controls">
+              <div class="toggle-box">
+                <label for="autoplayToggle">Autoplay</label>
+                <input type="checkbox" id="autoplayToggle" checked />
+              </div>
+
+              <div class="volume-box">
+                <label for="bigVolumeControl">Volume</label>
+                <input type="range" id="bigVolumeControl" min="0" max="1" step="0.01" value="1" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="music-player">
+    <div class="player-left">
+      <img id="playerCover" src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80&auto=format&fit=crop" alt="cover" />
+      <div>
+        <h4 id="playerTitle">No song selected</h4>
+        <p id="playerArtist">Choose a song to start</p>
+      </div>
+    </div>
+
+    <div class="player-center">
+      <div class="player-controls">
+        <button id="prevBtn">⏮</button>
+        <button id="playBtn">▶</button>
+        <button id="stopBtn">⏹</button>
+        <button id="nextBtn">⏭</button>
+      </div>
+
+      <div class="progress-wrap">
+        <span id="currentTime">0:00</span>
+        <input type="range" id="progressBar" min="0" max="100" value="0" />
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+
+    <div class="player-right">
+      <label>🔊</label>
+      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" />
+    </div>
+
+    <audio id="audioPlayer"></audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
